@@ -62,9 +62,11 @@ class SpawnEntityNode(Node):
         self.get_logger().info("Reading URDF file...")
         
         # URDFファイルの内容を読み込む
-        urdf_file = open(urdf_path, 'r')
-        urdf_content = urdf_file.read()
-        urdf_file.close()
+        urdf_content = ''
+        if urdf_path.endswith('.urdf'):
+            urdf_file = open(urdf_path, 'r')
+            urdf_content = urdf_file.read()
+            urdf_file.close()
         
         # SpawnEntityリクエストの作成
         request = SpawnEntity.Request()
